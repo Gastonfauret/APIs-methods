@@ -1,18 +1,27 @@
+import { useEffect, useState } from "react";
+
 function ApiRAM() {
-
     const url = "https://rickandmortyapi.com/api/character";
+    const [todos, setTodos] = useState()
 
-    async function fetchData() {
-        const response = await fetch(url);
-        const character = await response.json;
-        console.log(character)
+    const fetchApi = async () => {
+        const response = await fetch(url)
+        const responseJson = await response.json();
+        setTodos(responseJson)
     }
 
-    fetchData();
-    
+    useEffect(() => {
+        fetchApi()
+    }, [])
+
     return (
         <>
-            
+            <ul>
+                {todos.map((todo, index) => {
+                        return <li key={index}> {todo.results.id} </li>
+                    })
+                }
+            </ul>
         </>
     )
 }
