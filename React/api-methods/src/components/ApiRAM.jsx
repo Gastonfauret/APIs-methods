@@ -1,27 +1,34 @@
 import { useEffect, useState } from "react";
+import '../styles/ApiRAM.css'
 
 function ApiRAM() {
-    const url = "https://rickandmortyapi.com/api/character";
-    const [todos, setTodos] = useState()
+    const [characters, setCharacters] = useState([]);
 
-    const fetchApi = async () => {
-        const response = await fetch(url)
-        const responseJson = await response.json();
-        setTodos(responseJson)
+    const getApi = async () => {
+        try {
+            const response = await fetch("https://rickandmortyapi.com/api/character");
+            const data = await response.json();
+            console.log(data.results)
+            setCharacters(data.results)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     useEffect(() => {
-        fetchApi()
+        getApi();
     }, [])
 
     return (
         <>
             <ul>
-                {todos.map((todo, index) => {
-                        return <li key={index}> {todo.results.id} </li>
-                    })
-                }
-            </ul>
+                <li className="title-list">Name Status Gender Species Dimension</li>
+        { 
+            characters.map( (character, index) => {
+              return <li key={index} className="characters-list"> {character.name} {character.status} {character.gender} {character.species} {character.origin.name}</li>
+            })
+        }
+      </ul>
         </>
     )
 }
