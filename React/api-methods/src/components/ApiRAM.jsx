@@ -23,12 +23,12 @@ function ApiRAM() {
         <>
             <ul>
                 <li className="title-list">Name Status Gender Species Dimension</li>
-        { 
-            characters.map( (character, index) => {
-              return <li key={index} className="characters-list"> {character.name} {character.status} {character.gender} {character.species} {character.origin.name}</li>
-            })
-        }
-      </ul>
+                {
+                    characters.map((character, index) => {
+                        return <li key={index} className="characters-list"> {character.name} {character.status} {character.gender} {character.species} {character.origin.name}</li>
+                    })
+                }
+            </ul>
         </>
     )
 }
