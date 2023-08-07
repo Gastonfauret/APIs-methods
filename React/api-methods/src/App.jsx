@@ -1,15 +1,15 @@
 import './styles/App.css'
 import Header from './components/Header'
-import TypesButtons from './components/TypesButtons'
 import ApiRAM from './components/ApiRAM'
-//import BasicTable from './components/TableList'
+import SearchBar from './components/SearchBar'
 
 function App() {         
 
   return (
     <>
       <Header />
-      <TypesButtons />
+      <SearchBar />
+            
       <ApiRAM/> 
     </>
   )}
